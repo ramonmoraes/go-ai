@@ -1,33 +1,28 @@
-package main
+package nlp
 
 import (
 	"bytes"
 	"encoding/csv"
-	"fmt"
 	"io"
 	"io/ioutil"
 	"log"
 	"strconv"
 )
 
-type tweet struct {
-	sentiment int64 // 0 = negative, 2 = neutral, 4 = positve
-	text      string
+type Tweet struct {
+	Sentiment int64 // 0 = negative, 2 = neutral, 4 = positve
+	Text      string
 }
 
-func main() {
-	tweets := loadTweetList(10)
-	fmt.Println(tweets)
-}
-
-// maxTweetsCount should be -1 if want to lose entire file
-func loadTweetList(maxTweetsCount int) []tweet {
+// LoadTweetList should return the loaded datase
+// tmaxTweetsCount should be -1 if want to lose entire file
+func LoadTweetList(maxTweetsCount int) []Tweet {
 	input, err := ioutil.ReadFile("dataset/training.1600000.processed.noemoticon.csv")
 	if err != nil {
 		log.Fatal(err)
 	}
 	r := csv.NewReader(bytes.NewReader(input))
-	tweets := []tweet{}
+	tweets := []Tweet{}
 	count := 0
 	for {
 		record, err := r.Read()
@@ -47,12 +42,13 @@ func loadTweetList(maxTweetsCount int) []tweet {
 			log.Fatal(err)
 		}
 
-		tweets = append(tweets, tweet{
-			sentiment: sentimentValue,
-			text:      record[5],
+		tweets = append(tweets, Tweet{
+			Sentiment: sentimentValue,
+			Text:      record[5],
 		})
 
 		count++
 	}
+
 	return tweets
 }
