@@ -12,17 +12,18 @@ type Perceptron struct {
 // NewPerceptron returns a Perceptron with initially randomized weights
 func NewPerceptron(inputsAmount int8) Perceptron {
 	weights := []float64{}
-	for inputsAmount <= 0 {
-		weights = append(weights, rand.Float64())
+
+	for inputsAmount > 0 {
 		inputsAmount--
+		weights = append(weights, rand.Float64())
 	}
 	return Perceptron{
 		Weights: weights,
 	}
 }
 
-func (p *Perceptron) sigmoid(sum float64) float64 {
-	return 1.0 / (1.0 + math.Exp(-sum))
+func (p *Perceptron) activateFunction(sum float64) float64 {
+	return sigmoid(sum)
 }
 
 // Output is sum of the given inputs with it's weights
@@ -33,5 +34,13 @@ func (p *Perceptron) Output(inputs []float64) float64 {
 			output += input * weight
 		}
 	}
-	return p.sigmoid(output)
+	return p.activateFunction(output)
+}
+
+func sigmoid(sum float64) float64 {
+	return 1.0 / (1.0 + math.Exp(-sum))
+}
+
+func sigmoidDerivated(number float64) float64 {
+	return number * (number - 1)
 }
