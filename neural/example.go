@@ -20,6 +20,9 @@ var biggerThenFiveDataset = []perceptronTrainingData{
 
 func BiggerThenFiveExample() {
 	perceptron := NewPerceptron(3)
+	fmt.Println("Initial weights")
+	fmt.Println(perceptron.Weights)
+
 	trainCount := 100
 
 	for trainCount > 0 {
