@@ -1,12 +1,7 @@
 package main
 
-import (
-	"fmt"
-
-	"github.com/ramonmoraes/go-ai/nlp"
-)
+import "github.com/ramonmoraes/go-ai/neural"
 
 func main() {
-	tweets := nlp.LoadTweetList(10)
-	fmt.Println(tweets)
+	neural.OrExample()
 }
