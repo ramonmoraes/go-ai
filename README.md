@@ -1,4 +1,4 @@
-# Go nlp (pun intended)
+# Go ai (pun intended)
 
 ## Datasets:
 
