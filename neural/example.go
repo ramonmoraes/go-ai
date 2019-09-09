@@ -32,12 +32,12 @@ func OrExample() {
 	fmt.Println("Final weights")
 	fmt.Println(perceptron.Weights)
 	fmt.Println("- Predictions -")
-	predict := perceptron.Output([]float64{1, 1})
+	predict := perceptron.Predict([]float64{1, 1})
 	fmt.Println(predict)
 
-	predict = perceptron.Output([]float64{1, 0})
+	predict = perceptron.Predict([]float64{1, 0})
 	fmt.Println(predict)
 
-	predict = perceptron.Output([]float64{0, 0})
+	predict = perceptron.Predict([]float64{0, 0})
 	fmt.Println(predict)
 }

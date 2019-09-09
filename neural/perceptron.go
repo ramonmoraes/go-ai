@@ -29,8 +29,8 @@ func (p *Perceptron) activateFunction(sum float64) float64 {
 	return sigmoid(sum)
 }
 
-// Output is sum of the given inputs with it's weights
-func (p *Perceptron) Output(inputs []float64) float64 {
+// Predict is sum of the given inputs with it's weights
+func (p *Perceptron) Predict(inputs []float64) float64 {
 	var sum float64
 	for _, input := range inputs {
 		for _, weight := range p.Weights {
@@ -57,7 +57,7 @@ func sigmoidDerivated(number float64) float64 {
 
 func (p *Perceptron) Train(inputs []float64, expectedOutput float64) {
 	const learningRate = 0.1
-	outputErr := expectedOutput - p.Output(inputs)
+	outputErr := expectedOutput - p.Predict(inputs)
 	p.Bias += outputErr
 	for i, _ := range p.Weights {
 		p.Weights[i] -= outputErr
